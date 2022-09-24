@@ -5,10 +5,10 @@
         <!-- User details -->
         <div class="user-profile text-center mt-3">
             <div class="">
-                <img src="{{ asset('/') }}assets/images/users/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+                <img src="{{ Auth::user()->avatar ?? asset('/assets/images/users/avatar-1.jpg') }}" alt="" class="avatar-md rounded-circle">
             </div>
             <div class="mt-3">
-                <h4 class="font-size-16 mb-1">Gecko</h4>
+                <h4 class="font-size-16 mb-1">{{ @Auth::user()->name }}</h4>
                 <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
                     Admin</span>
             </div>
@@ -21,14 +21,14 @@
                 <li class="menu-title">Menu</li>
 
                 <li>
-                    <a href="{{ route('dashboard') }}" class="waves-effect {{ Request::routeIs('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('admin.dashboard') }}" class="waves-effect {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">
                         <i class="ri-dashboard-line"></i>
                         <span>Thống kê</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('historyPay') }}" class="waves-effect {{ Request::routeIs('historyPay') ? 'active' : '' }}">
+                    <a href="{{ route('admin.historyPay') }}" class="waves-effect {{ Request::routeIs('admin.historyPay') ? 'active' : '' }}">
                         <i class="ri-history-line"></i><span class="badge rounded-pill bg-success float-end">1</span>
                         <span>Lịch sử giao dịch</span>
                     </a>

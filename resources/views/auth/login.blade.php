@@ -8,8 +8,8 @@
                 <div class="text-center mt-4">
                     <div class="mb-3">
                         <a href="{{ route('home') }}" class="auth-logo">
-                            <img src="{{ asset('/') }}assets/images/logo-dark.png" height="30"
-                                class="logo-dark mx-auto" alt="">
+                            <img src="{{ asset('/') }}assets/images/logo-dark.png" height="30" class="logo-dark mx-auto"
+                                alt="">
                             <img src="{{ asset('/') }}assets/images/logo-light.png" height="30"
                                 class="logo-light mx-auto" alt="">
                         </a>
@@ -19,17 +19,23 @@
                 <h4 class="text-muted text-center font-size-18"><b>Đăng nhập</b></h4>
 
                 <div class="p-3">
-                    <form class="form-horizontal mt-3" action="index.html">
-
+                    @if (Session::has('message.error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ Session::get('message.error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    <form class="form-horizontal mt-3" method="post">
+                        @csrf
                         <div class="form-group mb-3 row">
                             <div class="col-12">
-                                <input class="form-control" type="text" required="" placeholder="Username">
+                                <input class="form-control" value="{{ old('email') }}" type="email" name="email" placeholder="Email">
                             </div>
                         </div>
 
                         <div class="form-group mb-3 row">
                             <div class="col-12">
-                                <input class="form-control" type="password" required="" placeholder="Password">
+                                <input class="form-control" value="{{ old('password') }}" type="password" name="password" placeholder="Password">
                             </div>
                         </div>
 
@@ -46,8 +52,7 @@
                                     khẩu?</a>
                             </div>
                             <div class="col-sm-5 mt-3">
-                                <a href="{{ route('signup') }}" class="text-muted"><i
-                                        class="mdi mdi-account-circle"></i>
+                                <a href="{{ route('signup') }}" class="text-muted"><i class="mdi mdi-account-circle"></i>
                                     Tạo tài khoản mới</a>
                             </div>
                         </div>

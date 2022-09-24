@@ -5,7 +5,7 @@
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Cpanel</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Cpanel</a></li>
                     <li class="breadcrumb-item active">@yield('title')</li>
                 </ol>
             </div>

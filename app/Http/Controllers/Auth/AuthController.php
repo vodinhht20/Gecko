@@ -83,7 +83,7 @@ class AuthController extends Controller
         $user = $this->userRepo->register($data);
         if ($user) {
             event(new UserRegisted($user));
-            return redirect()->route('account-verify', ['id' => $user->id]);
+            return redirect()->route('verification.notice', ['id' => $user->id]);
         }
         return redirect()->back()->with('message.error', "Đăng ký thất bại. Vui lòng thử lại !")->withInput();
     }

@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Home\HomeController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,10 +26,22 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/signup', [AuthController::class, 'signupForm'])->name('signup');
 Route::post('/signup', [AuthController::class, 'signup']);
 
-Route::get('/account-verify', [AuthController::class, 'accountVerifyForm'])->name('account-verify');
+Route::get('/account-verify', [AuthController::class, 'accountVerifyForm'])->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+ 
+    return redirect()->route('home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
 Route::get('/reset-password', [AuthController::class, 'resetPassForm'])->name('resetPass');
 
-Route::prefix('/admin')->name('admin.')->group(function () {
+Route::middleware(['auth'])->prefix('/admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/history-pay', [AdminController::class, 'historyPay'])->name('historyPay');
+
+    Route::middleware(['auth', 'role:admin'])->prefix('/users')->name('users.')->group(function () {
+        Route::get('/', [UserController::class, 'listUsers'])->name('listUsers');
+        Route::post('/change-status', [UserController::class, 'changeStatus'])->name('changeStatus');
+    });
 });

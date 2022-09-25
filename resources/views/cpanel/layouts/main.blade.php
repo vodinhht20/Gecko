@@ -8,10 +8,12 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
     <link rel="shortcut icon" href="{{ asset('/') }}/assets/images/favicon.ico">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('cpanel.layouts.style')
 </head>
 
 <body data-topbar="dark">
+    @include('sweetalert::alert')
     <div id="layout-wrapper">
         @include('cpanel.layouts.header')
         @include('cpanel.layouts.sidebar')

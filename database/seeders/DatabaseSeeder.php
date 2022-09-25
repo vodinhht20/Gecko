@@ -3,7 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +24,17 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $role = Role::create(['name' => 'admin']);
+        $permission = Permission::create(['name' => 'cpanel']);
+        $role->givePermissionTo($permission);
+        $user = User::find(1);
+        $user->assignRole('admin');
+
+        $role2 = Role::create(['name' => 'mod']);
+        $permission2 = Permission::create(['name' => 'mod']);
+        $role2->givePermissionTo($permission2);
+        $user2 = User::find(1);
+        $user2->assignRole('mod');
     }
 }

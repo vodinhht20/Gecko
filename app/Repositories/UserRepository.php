@@ -71,11 +71,11 @@ class userRepository extends BaseRepository
         return false;
     }
 
-    public function changeStatus($status, $id)
+    public function changeStatus($id)
     {
         $user = $this->model->find($id);
         if ($user) {
-            $user->status = $status;
+            empty($user->email_verified_at) ? $user->email_verified_at = Carbon::now()->format('Y-m-d H:i:s') : $user->email_verified_at = null;
             $user->save();
             return $user;
         }

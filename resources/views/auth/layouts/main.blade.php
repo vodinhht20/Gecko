@@ -12,6 +12,7 @@
 </head>
 
 <body class="auth-body-bg">
+    @include('sweetalert::alert')
     {{-- <div class="bg-overlay"></div> --}}
     <div class="wrapper-page">
         @yield('content')

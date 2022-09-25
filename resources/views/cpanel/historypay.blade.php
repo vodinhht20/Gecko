@@ -2,11 +2,7 @@
 @section('title', 'Lịch sử giao dịch')
 @section('content')
     <div class="container-fluid">
-
-        <!-- start page title -->
         @include('cpanel.layouts.breadcrumb')
-        <!-- end page title -->
-
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">

@@ -18,6 +18,7 @@
                                         <th>Email</th>
                                         <th>Trạng thái</th>
                                         <th>Số dư</th>
+                                        <th>Quyền</th>
                                         <th colspan="1">Action</th>
                                     </tr>
                                 </thead>
@@ -32,11 +33,20 @@
                                             <td>{{ @$user->email }}</td>
                                             <td><span data-name="{{ @$user->id }}">{!! @$user->status(@$user->id) !!}</span></td>
                                             <td><span
-                                                    class="badge badge-soft-info">{{ money(@$user->cash, currency('VND2'))->toString() }}</span>
+                                                    class="badge badge-soft-info">{{ money(@$user->cash, currency('Gecko'))->toString() }}</span>
                                             </td>
-                                            <td><button type="button"
+                                            <td>
+                                                @if ($user->hasRole([config('roles.admin')]))
+                                                <span class="badge badge-soft-danger">Admin</span>
+                                                @endif
+                                                @if ($user->hasRole([config('roles.mod')]))
+                                                <span class="badge badge-soft-success">Mod</span>
+                                                @endif
+                                                <span class="badge badge-soft-dark">Thành viên</span>
+                                            </td>
+                                            <td><a href="{{ route('admin.users.editUser', @$user->id) }}" type="button"
                                                     class="btn btn-outline-primary waves-effect waves-light"><i
-                                                        class="ri-edit-2-fill"></i></button></td>
+                                                        class="ri-edit-2-fill"></i></a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

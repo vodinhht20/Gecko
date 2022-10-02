@@ -39,9 +39,24 @@ Route::get('/reset-password', [AuthController::class, 'resetPassForm'])->name('r
 Route::middleware(['auth'])->prefix('/admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/history-pay', [AdminController::class, 'historyPay'])->name('historyPay');
+    Route::get('/wallet', [AdminController::class, 'wallet'])->name('wallet');
+    Route::get('/recharge-pack', [AdminController::class, 'rechargePack'])->name('rechargePack');
+    Route::get('/pay', [AdminController::class, 'payForm'])->name('pay');
+    Route::post('/cancel-pay', [AdminController::class, 'cancelPay'])->name('cancelPay');
+
+    Route::get('/create-transaction', [AdminController::class, 'createTransaction'])->name('createTransaction');
+    Route::post('/send-transaction', [AdminController::class, 'sendTransaction'])->name('sendTransaction');
+
+    Route::middleware(['auth', 'role:admin'])->group(function () {
+        Route::get('/list-pay', [AdminController::class, 'listPay'])->name('listPay');
+        Route::get('/ajax-get-pay', [AdminController::class, 'dataReponse'])->name('ajax-get-pay');
+        Route::post('/confirmation', [AdminController::class, 'confirmationAdmin'])->name('confirmation');
+    });
 
     Route::middleware(['auth', 'role:admin'])->prefix('/users')->name('users.')->group(function () {
         Route::get('/', [UserController::class, 'listUsers'])->name('listUsers');
+        Route::get('/edit/{id}', [UserController::class, 'editUserForm'])->name('editUser');
+        Route::post('/edit/{id}', [UserController::class, 'editUser']);
         Route::post('/change-status', [UserController::class, 'changeStatus'])->name('changeStatus');
     });
 });

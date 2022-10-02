@@ -67,9 +67,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item" href="#"><i class="ri-user-line align-middle me-1"></i>
-                        Trang cá nhân</a>
-                    <a class="dropdown-item" href="#"><i class="ri-wallet-2-line align-middle me-1"></i> Ví của tôi</a>
+                    <a class="dropdown-item" href="{{ route('admin.wallet') }}"><i class="ri-wallet-2-line align-middle me-1"></i> Ví của tôi</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i
                             class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>

@@ -5,7 +5,8 @@
         <!-- User details -->
         <div class="user-profile text-center mt-3">
             <div class="">
-                <img src="{{ Auth::user()->avatar ?? asset('/assets/images/users/avatar-1.jpg') }}" alt="" class="avatar-md rounded-circle">
+                <img src="{{ Auth::user()->avatar ?? asset('/assets/images/users/avatar-1.jpg') }}" alt=""
+                    class="avatar-md rounded-circle">
             </div>
             <div class="mt-3">
                 <h4 class="font-size-16 mb-1">{{ @Auth::user()->name }}</h4>
@@ -21,18 +22,30 @@
                 <li class="menu-title">Menu</li>
 
                 <li>
-                    <a href="{{ route('admin.dashboard') }}" class="waves-effect {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('admin.dashboard') }}"
+                        class="waves-effect {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">
                         <i class="ri-dashboard-line"></i>
                         <span>Thống kê</span>
                     </a>
                 </li>
 
-                <li>
-                    <a href="{{ route('admin.historyPay') }}" class="waves-effect {{ Request::routeIs('admin.historyPay') ? 'active' : '' }}">
-                        <i class="ri-history-line"></i><span class="badge rounded-pill bg-success float-end">1</span>
-                        <span>Lịch sử giao dịch</span>
-                    </a>
-                </li>
+                @role('admin')
+                    <li>
+                        <a href="{{ route('admin.listPay') }}"
+                            class="waves-effect {{ Request::routeIs('admin.listPay') ? 'active' : '' }}">
+                            <i class="ri-bank-card-2-fill"></i><span class="badge rounded-pill bg-success float-end">1</span>
+                            <span>Danh sách thanh toán</span>
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('admin.historyPay') }}"
+                            class="waves-effect {{ Request::routeIs('admin.historyPay') ? 'active' : '' }}">
+                            <i class="ri-history-line"></i><span class="badge rounded-pill bg-success float-end">1</span>
+                            <span>Lịch sử giao dịch</span>
+                        </a>
+                    </li>
+                @endrole
 
                 <li class="menu-title">Khách hàng</li>
 
@@ -43,9 +56,6 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('admin.users.listUsers') }}">Danh sách khách hàng</a></li>
-                        <li><a href="auth-register.html">Register</a></li>
-                        <li><a href="auth-recoverpw.html">Recover Password</a></li>
-                        <li><a href="auth-lock-screen.html">Lock Screen</a></li>
                     </ul>
                 </li>
             </ul>

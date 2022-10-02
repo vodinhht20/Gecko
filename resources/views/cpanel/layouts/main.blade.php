@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="{{ asset('/') }}/assets/images/favicon.ico">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('cpanel.layouts.style')
+    @yield('style')
 </head>
 
 <body data-topbar="dark">

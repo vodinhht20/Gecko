@@ -33,6 +33,12 @@ class userRepository extends BaseRepository
         return $user;
     }
 
+    public function surplus($id)
+    {
+        $surplus = $this->model->where('id', $id)->select('cash')->first();
+        return $surplus;
+    }
+
     public function updateTokenVerifyEmail($arrData = [])
     {
         $user = $this->find($arrData['id']);

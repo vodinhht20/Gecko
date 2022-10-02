@@ -67,13 +67,21 @@ return [
     */
     'custom_currencies' => [
         [
+            'full_name' => 'Gecko',
+            'name' => 'Gecko',
+            'iso_code' => 'Gecko',
+            'num_code' => '841',
+            'symbol' => 'Gecko',
+            'position' => Currency::POSITION_END,
+        ],
+        [
             'full_name' => 'Viet Nam Dong',
             'name' => 'DONG',
             'iso_code' => 'VND2',
-            'num_code' => '841',
+            'num_code' => '842',
             'symbol' => 'VNĐ',
             'position' => Currency::POSITION_END,
-        ]
+        ],
     ],
 
     /*

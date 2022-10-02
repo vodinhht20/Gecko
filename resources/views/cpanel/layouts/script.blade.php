@@ -21,3 +21,29 @@
 
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
+<script src="{{ asset('assets/libs/toastr/build/toastr.min.js') }}"></script>
+<script src="{{ asset('assets/js/pages/toastr.init.js') }}"></script>
+<script src="{{ asset('assets/js/vue.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('assets/js/axios.min.js') }}"></script>
+<script>
+    function alertCopy(value) {
+        toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": 300,
+        "hideDuration": 1000,
+        "timeOut": 5000,
+        "extendedTimeOut": 1000,
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+        }  
+        toastr["success"](`Đã copy: ${value}`);
+    }
+</script>
